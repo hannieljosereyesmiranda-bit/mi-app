@@ -1,0 +1,442 @@
+<PreSplashScreen>:
+    canvas.before:
+        Color:
+            rgb: 239/255, 165/255, 32/255
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: '😉'
+            font_size: '100sp'
+            halign: 'center'
+            valign: 'middle'
+        Label:
+            text: 'SmartStore'
+            font_size: '32sp'
+            bold: True
+            halign: 'center'
+            valign: 'middle'
+            color: 1,1,1,1
+
+<SplashScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Rectangle:
+                source: 'assets/splash.png'
+                size: self.size
+                pos: self.pos
+        MDRaisedButton:
+            text: '→'
+            font_size: '14sp'
+            size_hint: (0.04, 0.02)
+            pos_hint: {'right': 0.96, 'bottom': 0.04}
+            md_bg_color: 239/255, 165/255, 32/255, 1
+            on_release: app.root.current = 'login'
+
+<LoginScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            id: titulo
+            text: 'Iniciar Sesión'
+            font_size: '32sp'
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDTextField:
+            id: correo
+            hint_text: 'Correo'
+            text: 'admin@smartstore.com'
+            mode: 'round'
+        MDTextField:
+            id: password
+            hint_text: 'Contraseña'
+            password: True
+            text: 'admin123'
+            mode: 'round'
+        MDTextField:
+            id: nombre
+            hint_text: 'Nombre'
+            mode: 'round'
+            opacity: 0
+            disabled: True
+        MDTextField:
+            id: telefono
+            hint_text: 'Teléfono'
+            mode: 'round'
+            opacity: 0
+            disabled: True
+        MDTextField:
+            id: fecha
+            hint_text: 'Fecha nacimiento (ejemplo: 2005-03-15)'
+            mode: 'round'
+            opacity: 0
+            disabled: True
+        MDRaisedButton:
+            id: btn_accion
+            text: 'Ingresar'
+            size_hint_y: 0.08
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: root.accion()
+        MDFlatButton:
+            id: btn_recuperar
+            text: '¿Olvidaste contraseña?'
+            size_hint_y: 0.06
+            on_release: root.recuperar()
+        MDFlatButton:
+            id: btn_alternar
+            text: 'Crear cuenta nueva'
+            size_hint_y: 0.06
+            on_release: root.toggle()
+
+<MenuScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            id: bienvenido
+            text: 'Bienvenido'
+            font_size: 24
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDLabel:
+            text: 'Gestiona tu negocio de forma inteligente'
+            halign: 'center'
+            theme_text_color: 'Secondary'
+        MDRaisedButton:
+            text: '📦 Registrar Producto'
+            size_hint_y: 0.08
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: app.root.current = 'registrar_producto'
+        MDRaisedButton:
+            text: '🔍 Buscar Productos'
+            size_hint_y: 0.08
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: app.root.current = 'buscar_producto'
+        MDRaisedButton:
+            text: '🛒 Reservas y Carrito'
+            size_hint_y: 0.08
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: app.root.current = 'carrito'
+        MDRaisedButton:
+            text: '🏪 Crear Tienda'
+            size_hint_y: 0.08
+            md_bg_color: 239/255, 165/255, 32/255, 1
+            on_release: app.root.current = 'crear_tienda'
+        MDCard:
+            orientation: 'vertical'
+            padding: 10
+            spacing: 5
+            size_hint_y: 0.2
+            md_bg_color: 0.96,0.96,0.96,0.9
+            elevation: 5
+            radius: 15
+            MDLabel:
+                id: total_productos
+                text: 'Total de productos: 0'
+                font_style: 'Subtitle1'
+            MDLabel:
+                text: 'Estado del inventario'
+                theme_text_color: 'Secondary'
+            MDLabel:
+                id: stock_total
+                text: '+ 0'
+                font_size: 32
+                bold: True
+                color: 239/255, 165/255, 32/255, 1
+        MDRaisedButton:
+            text: 'Mi Perfil'
+            size_hint_y: 0.07
+            md_bg_color: 100/255, 100/255, 100/255, 1
+            on_release: app.root.current = 'perfil'
+        MDFlatButton:
+            text: 'Cerrar Sesión'
+            size_hint_y: 0.06
+            theme_text_color: 'Error'
+            on_release: app.root.current = 'pre_splash'
+
+<RegistrarProductoScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            text: 'Registrar Producto (Calculadora)'
+            font_size: 24
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDTextField:
+            id: nombre
+            hint_text: 'Nombre'
+            mode: 'round'
+        MDTextField:
+            id: precio
+            hint_text: 'Precio C$'
+            mode: 'round'
+        MDTextField:
+            id: stock
+            hint_text: 'Cantidad'
+            mode: 'round'
+        MDTextField:
+            id: tasa
+            hint_text: 'Tasa dólar'
+            text: '36.5'
+            mode: 'round'
+        MDRaisedButton:
+            text: 'Calcular y sumar'
+            size_hint_y: 0.07
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: root.calcular()
+        MDLabel:
+            id: resultado
+            text: ''
+            halign: 'center'
+        MDLabel:
+            id: total_text
+            text: 'Total acumulado: C$0.00 / $0.00'
+            halign: 'center'
+            bold: True
+        MDFlatButton:
+            text: 'Volver al Menú'
+            size_hint_y: 0.06
+            on_release: app.root.current = 'menu'
+
+<BuscarProductoScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            id: tienda_label
+            text: 'Buscar Productos'
+            font_size: 24
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDBoxLayout:
+            size_hint_y: 0.08
+            spacing: 10
+            MDTextField:
+                id: buscar_input
+                hint_text: 'Buscar por nombre'
+                mode: 'round'
+                size_hint_x: 0.7
+            MDRaisedButton:
+                text: 'Buscar'
+                size_hint_x: 0.3
+                md_bg_color: 17/255, 102/255, 231/255, 1
+                on_release: root.buscar()
+        ScrollView:
+            size_hint_y: 0.6
+            MDGridLayout:
+                id: resultados
+                cols: 1
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+                adaptive_height: True
+        MDFlatButton:
+            text: 'Volver al Menú'
+            size_hint_y: 0.06
+            on_release: app.root.current = 'menu'
+
+<CarritoScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            text: 'Mis Reservas'
+            font_size: 28
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        ScrollView:
+            size_hint_y: 0.55
+            MDGridLayout:
+                id: lista
+                cols: 1
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+                adaptive_height: True
+        MDLabel:
+            id: total_text
+            text: 'Total: C$0.00 / $0.00'
+            halign: 'center'
+            bold: True
+            font_size: 16
+        MDRaisedButton:
+            text: 'Confirmar Reserva'
+            size_hint_y: 0.07
+            md_bg_color: 239/255, 165/255, 32/255, 1
+            on_release: root.confirmar_todo()
+        MDFlatButton:
+            text: 'Volver al Menú'
+            size_hint_y: 0.06
+            on_release: app.root.current = 'menu'
+
+<CrearTiendaScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            text: 'Crear Tienda'
+            font_size: 28
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDTextField:
+            id: nombre_input
+            hint_text: 'Nombre de la tienda'
+            mode: 'round'
+        MDTextField:
+            id: whatsapp_input
+            hint_text: 'WhatsApp (ej: 50588888888)'
+            mode: 'round'
+        MDTextField:
+            id: clave_input
+            hint_text: 'Contraseña para proteger la tienda'
+            password: True
+            mode: 'round'
+        MDTextField:
+            id: pregunta_input
+            hint_text: 'Pregunta de seguridad'
+            mode: 'round'
+        MDTextField:
+            id: respuesta_input
+            hint_text: 'Respuesta'
+            mode: 'round'
+        MDTextField:
+            id: tasa_input
+            hint_text: 'Tasa de cambio'
+            text: '36.5'
+            mode: 'round'
+        MDTextField:
+            id: nombre_prod_input
+            hint_text: 'Nombre del producto'
+            mode: 'round'
+        MDTextField:
+            id: marca_input
+            hint_text: 'Marca (opcional)'
+            mode: 'round'
+        MDTextField:
+            id: talla_input
+            hint_text: 'Talla (opcional)'
+            mode: 'round'
+        MDTextField:
+            id: precio_input
+            hint_text: 'Precio en C$'
+            mode: 'round'
+        MDTextField:
+            id: cantidad_input
+            hint_text: 'Cantidad'
+            mode: 'round'
+        MDRaisedButton:
+            text: 'Agregar Producto'
+            size_hint_y: 0.07
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: root.agregar_producto()
+        MDRaisedButton:
+            text: 'Guardar Tienda'
+            size_hint_y: 0.08
+            md_bg_color: 239/255, 165/255, 32/255, 1
+            on_release: root.guardar_tienda()
+        MDFlatButton:
+            text: 'Volver al Menú'
+            size_hint_y: 0.06
+            on_release: app.root.current = 'menu'
+
+<PerfilScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+        canvas.before:
+            Rectangle:
+                source: 'assets/fondo.png'
+                size: self.size
+                pos: self.pos
+        MDLabel:
+            text: 'Mi Perfil'
+            font_size: 28
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDLabel:
+            id: nombre_label
+            text: 'Nombre: '
+            font_size: 18
+        MDLabel:
+            id: correo_label
+            text: 'Correo: '
+            font_size: 18
+        MDLabel:
+            text: 'Cambiar contraseña'
+            font_size: 20
+            bold: True
+            halign: 'center'
+            color: 4/255, 4/255, 74/255, 1
+        MDTextField:
+            id: nueva_pass
+            hint_text: 'Nueva contraseña'
+            password: True
+            mode: 'round'
+        MDTextField:
+            id: confirm_pass
+            hint_text: 'Confirmar contraseña'
+            password: True
+            mode: 'round'
+        MDRaisedButton:
+            text: 'Actualizar contraseña'
+            size_hint_y: 0.08
+            md_bg_color: 17/255, 102/255, 231/255, 1
+            on_release: root.cambiar_pass()
+        MDFlatButton:
+            text: 'Volver al Menú'
+            size_hint_y: 0.06
+            on_release: app.root.current = 'menu'
+        MDRaisedButton:
+            text: 'Cerrar Sesión'
+            size_hint_y: 0.07
+            md_bg_color: 211/255, 47/255, 47/255, 1
+            on_release: app.root.current = 'pre_splash'
